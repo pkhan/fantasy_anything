@@ -8,7 +8,10 @@ class Player(Base):
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
-    parent_player_id = Column(Integer, ForeignKey('player.id'))
+
+    team_id = Column(Integer, ForeignKey('teams.id'))
+    team = relationship("Team")
+
+    # parent_player_id = Column(Integer, ForeignKey('players.id'))
     
-    children = relationship("Player", backref="parent_player")
-    stats = relationship("Stat", backref="player")
+    # children = relationship("Player", backref="parent_player")
