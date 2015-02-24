@@ -4,8 +4,7 @@ from base import Base
 
 class Stat(Base):
     __tablename__ = 'stats'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
+
     id = Column(Integer, primary_key=True)
     amount = Column(Integer)
 
@@ -14,3 +13,9 @@ class Stat(Base):
 
     player_id = Column(Integer, ForeignKey('players.id'))
     player = relationship('Player', backref='stats')
+
+    def points(self):
+        return self.amount * self.stat_type.multiplier
+
+    def rollup_points(self):
+        return self.amount * self.stat_type.rollup_multiplier

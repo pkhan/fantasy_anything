@@ -16,3 +16,16 @@ class Player(Base):
 
     parent_player_id = Column(Integer, ForeignKey('players.id'))
     parent = relationship("Player", remote_side=[id], backref="children")
+
+    def score(self):
+        my_score = 0
+        for stat in self.stats:
+            my_score += stat.score()
+
+        for child in self.children:
+            my_score += child.rollup_score()
+
+    def rollup_score(self):
+        my_score = 0
+        for stat in self.stats:
+            my_score += stat.rollup_score()

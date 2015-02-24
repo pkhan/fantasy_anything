@@ -8,6 +8,8 @@ class StatType(Base):
     id = Column(Integer, primary_key=True)
     is_decimal = Column(Boolean, default=False)
     name = Column(String(250))
+    multiplier = Column(Integer)
+    rollup_multiplier = Column(integer, default=0)
 
     league_id = Column(Integer, ForeignKey('leagues.id'))
     league = relationship('League', backref='stat_types')
