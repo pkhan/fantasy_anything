@@ -10,6 +10,7 @@ from tornado import template
 from pyjade.ext.tornado import patch_tornado
 
 from newer_yahoo import FantasyApp
+from app.session import session
 
 patch_tornado()
 
