@@ -8,3 +8,6 @@ class StatType(Base):
     id = Column(Integer, primary_key=True)
     is_decimal = Column(Boolean, default=False)
     name = Column(String(250))
+
+    league_id = Column(Integer, ForeignKey('leagues.id'))
+    league = relationship('League', backref='stat_types')

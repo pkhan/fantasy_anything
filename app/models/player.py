@@ -4,14 +4,15 @@ from base import Base
 
 class Player(Base):
     __tablename__ = 'players'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
+    
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
 
     team_id = Column(Integer, ForeignKey('teams.id'))
-    team = relationship("Team")
+    team = relationship("Team", backref="players")
 
-    # parent_player_id = Column(Integer, ForeignKey('players.id'))
-    
-    # children = relationship("Player", backref="parent_player")
+    league_id = Column(Integer, ForeignKey('leagues.id'))
+    league = relationship("League", backref="players")
+
+    parent_player_id = Column(Integer, ForeignKey('players.id'))
+    parent = relationship("Player", remote_side=[id], backref="children")

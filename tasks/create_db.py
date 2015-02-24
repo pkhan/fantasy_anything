@@ -1,7 +1,6 @@
 import os
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker
-from app.models.team import Base, Team
 
 engine = sqlalchemy.create_engine("postgres://patrickconway@/postgres")
 
