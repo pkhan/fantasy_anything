@@ -8,5 +8,5 @@ class League(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
 
-    # manager_id = Column(Integer, ForeignKey('teams.id', use_alter=True, name='fk_manager_id'))
-    # manager = relationship('Team', post_update=True, foreign_keys=[manager_id])
+    manager_id = Column(Integer, ForeignKey('teams.id'))
+    manager = relationship('Team', foreign_keys=manager_id)

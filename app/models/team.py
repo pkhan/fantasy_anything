@@ -9,4 +9,4 @@ class Team(Base):
     name = Column(String(250), nullable=False)
 
     league_id = Column(Integer, ForeignKey('leagues.id'))
-    league = relationship('League', backref='teams')
+    league = relationship('League', backref='teams', foreign_keys=league_id)
